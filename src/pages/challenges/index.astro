@@ -5,10 +5,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 const items = (await getCollection('challenges', ({ data }) => !data.draft))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
-<BaseLayout title="Challenges · Hailey" description="노마드코더 챌린지 결과물 모음">
+<BaseLayout title="Challenges · Hailey">
   <header class="space-y-2">
     <h1 class="text-3xl font-bold tracking-tight">Challenges</h1>
-    <p class="text-neutral-600 dark:text-neutral-400">노마드코더 챌린지 결과물 모음.</p>
   </header>
 
   {items.length === 0 ? (
