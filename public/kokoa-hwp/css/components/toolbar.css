@@ -1,0 +1,52 @@
+/* 새 문서 / 불러오기 / 저장 ... 아이콘 줄 */
+.hwp-toolbar {
+  display: flex;
+  align-items: center;
+  height: 56px;
+  background-color: var(--hwp-toolbar-bg);
+  border-bottom: 1px solid var(--hwp-border-light);
+  padding: 4px 10px;
+  gap: 2px;
+  overflow-x: auto;
+}
+
+.hwp-toolbar__group {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 0 6px;
+  border-right: 1px solid var(--hwp-border-light);
+}
+
+.hwp-toolbar__group:last-child {
+  border-right: none;
+}
+
+.hwp-toolbar__btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 56px;
+  padding: 4px 6px;
+  cursor: default;
+  border-radius: 3px;
+  font-size: 11px;
+  color: #444;
+  gap: 2px;
+  white-space: nowrap;
+}
+
+.hwp-toolbar__btn:hover {
+  background-color: #e3eaf2;
+}
+
+.hwp-toolbar__btn i {
+  font-size: 18px;
+  color: #5a5a5a;
+}
+
+/* 일부 아이콘은 빨강/파랑 같은 컬러 강조 */
+.hwp-toolbar__btn--accent i { color: var(--hwp-blue); }
+.hwp-toolbar__btn--red i    { color: var(--hwp-red); }
+.hwp-toolbar__btn--save i   { color: #1f8a3a; }

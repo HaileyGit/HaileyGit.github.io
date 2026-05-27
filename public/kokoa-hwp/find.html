@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>검색 결과 — 한글</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="hwp-app">
+    <div class="hwp-titlebar">
+      <div class="hwp-titlebar__lights">
+        <span class="light--red"></span>
+        <span class="light--yellow"></span>
+        <span class="light--green"></span>
+      </div>
+      <div class="hwp-titlebar__title">📄 검색 결과.hwp</div>
+    </div>
+
+    <nav class="hwp-menubar">
+      <span class="hwp-menubar__item">파일</span>
+      <span class="hwp-menubar__item">편집</span>
+      <span class="hwp-menubar__item">보기</span>
+      <span class="hwp-menubar__item">입력</span>
+      <span class="hwp-menubar__item">서식</span>
+      <span class="hwp-menubar__item">쪽</span>
+      <span class="hwp-menubar__item">보안</span>
+      <span class="hwp-menubar__item">검토</span>
+      <span class="hwp-menubar__item">도구</span>
+      <span class="hwp-menubar__item">창</span>
+      <span class="hwp-menubar__item">도움말</span>
+    </nav>
+
+    <div class="hwp-toolbar">
+      <div class="hwp-toolbar__group">
+        <div class="hwp-toolbar__btn"><i class="far fa-file"></i><span>새 문서</span></div>
+        <div class="hwp-toolbar__btn"><i class="far fa-folder-open"></i><span>불러오기</span></div>
+        <div class="hwp-toolbar__btn hwp-toolbar__btn--save"><i class="fas fa-save"></i><span>저장하기</span></div>
+        <div class="hwp-toolbar__btn"><i class="fas fa-print"></i><span>인쇄</span></div>
+      </div>
+      <div class="hwp-toolbar__group">
+        <div class="hwp-toolbar__btn"><i class="fas fa-cut"></i><span>오려두기</span></div>
+        <div class="hwp-toolbar__btn"><i class="far fa-copy"></i><span>복사하기</span></div>
+        <div class="hwp-toolbar__btn"><i class="fas fa-paste"></i><span>붙이기</span></div>
+        <div class="hwp-toolbar__btn"><i class="fas fa-brush"></i><span>모양 복사</span></div>
+      </div>
+      <div class="hwp-toolbar__group">
+        <div class="hwp-toolbar__btn"><i class="fas fa-undo"></i><span>되돌리기</span></div>
+        <div class="hwp-toolbar__btn"><i class="fas fa-redo"></i><span>다시 실행</span></div>
+      </div>
+      <div class="hwp-toolbar__group">
+        <div class="hwp-toolbar__btn"><i class="fas fa-table"></i><span>표</span></div>
+        <div class="hwp-toolbar__btn hwp-toolbar__btn--accent"><i class="fas fa-chart-column"></i><span>차트</span></div>
+        <div class="hwp-toolbar__btn"><i class="fas fa-shapes"></i><span>도형</span></div>
+        <div class="hwp-toolbar__btn"><i class="far fa-image"></i><span>그림</span></div>
+      </div>
+      <div class="hwp-toolbar__group">
+        <div class="hwp-toolbar__btn"><i class="fas fa-arrow-pointer"></i><span>개체 선택</span></div>
+        <div class="hwp-toolbar__btn hwp-toolbar__btn--red"><i class="fas fa-lock"></i><span>개체 보호</span></div>
+        <div class="hwp-toolbar__btn"><i class="fas fa-window-restore"></i><span>작업 창</span></div>
+      </div>
+    </div>
+
+    <div class="hwp-formatbar">
+      <div class="hwp-formatbar__select hwp-formatbar__select--wide">바탕글<i class="fas fa-chevron-down"></i></div>
+      <div class="hwp-formatbar__select hwp-formatbar__select--wide">대표<i class="fas fa-chevron-down"></i></div>
+      <div class="hwp-formatbar__select hwp-formatbar__select--font">함초롬바탕<i class="fas fa-chevron-down"></i></div>
+      <div class="hwp-formatbar__select hwp-formatbar__select--size">10.0<i class="fas fa-chevron-down"></i></div>
+      <div class="hwp-formatbar__divider"></div>
+      <div class="hwp-formatbar__btn"><b>가</b></div>
+      <div class="hwp-formatbar__btn"><i>가</i></div>
+      <div class="hwp-formatbar__btn"><u>가</u></div>
+      <div class="hwp-formatbar__divider"></div>
+      <div class="hwp-formatbar__color hwp-formatbar__color--red">가<div class="hwp-formatbar__color-bar"></div></div>
+      <div class="hwp-formatbar__color hwp-formatbar__color--yellow">🖍<div class="hwp-formatbar__color-bar"></div></div>
+      <div class="hwp-formatbar__divider"></div>
+      <div class="hwp-formatbar__btn"><i class="fas fa-align-left"></i></div>
+      <div class="hwp-formatbar__btn"><i class="fas fa-align-center"></i></div>
+      <div class="hwp-formatbar__btn"><i class="fas fa-align-right"></i></div>
+      <div class="hwp-formatbar__btn"><i class="fas fa-align-justify"></i></div>
+      <div class="hwp-formatbar__divider"></div>
+      <div class="hwp-formatbar__select hwp-formatbar__select--size">160%<i class="fas fa-chevron-down"></i></div>
+    </div>
+
+    <div class="hwp-tabs">
+      <a href="index.html" class="hwp-tab"><i class="far fa-id-card hwp-tab__icon"></i>사용자 인증<span class="hwp-tab__close">×</span></a>
+      <a href="chats.html" class="hwp-tab"><i class="far fa-file-lines hwp-tab__icon"></i>오늘의 대화 기록<span class="hwp-tab__close">×</span></a>
+      <a href="friends.html" class="hwp-tab"><i class="far fa-address-book hwp-tab__icon"></i>동료 연락처<span class="hwp-tab__close">×</span></a>
+      <a href="find.html" class="hwp-tab hwp-tab--active"><i class="fas fa-magnifying-glass hwp-tab__icon"></i>검색 결과<span class="hwp-tab__close">×</span></a>
+      <a href="more.html" class="hwp-tab"><i class="far fa-user hwp-tab__icon"></i>내 정보<span class="hwp-tab__close">×</span></a>
+      <a href="settings.html" class="hwp-tab"><i class="fas fa-gear hwp-tab__icon"></i>환경 설정<span class="hwp-tab__close">×</span></a>
+      <a href="chat.html" class="hwp-tab"><i class="far fa-comments hwp-tab__icon"></i>AI 기초 탄탄 2기 스터디<span class="hwp-tab__close">×</span></a>
+      <span class="hwp-tab hwp-tab--new">+</span>
+    </div>
+
+    <div class="hwp-ruler">
+      <div class="hwp-ruler__numbers">
+        <span>2</span><span>1</span><span>2</span><span>3</span><span>4</span>
+        <span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
+        <span>10</span><span>11</span><span>12</span><span>13</span><span>14</span>
+        <span>15</span><span>16</span><span>17</span><span>18</span>
+      </div>
+    </div>
+
+    <main class="hwp-workspace">
+      <div class="hwp-vruler"></div>
+      <article class="hwp-page">
+        <h1 class="hwp-page__title">검색 결과</h1>
+        <p class="hwp-page__subtitle">검색 범위: 모든 대화 / 검색 시각: 2030. 04. 21. (월) 21:40</p>
+
+        <form class="hwp-form" onsubmit="return false;">
+          <div class="hwp-form__title">찾기 및 바꾸기</div>
+          <div class="hwp-form__row">
+            <label class="hwp-form__label" for="find-q">찾을 내용</label>
+            <input class="hwp-form__input" id="find-q" type="text" value="Bora" placeholder="키워드 입력" />
+          </div>
+          <div class="hwp-form__row">
+            <label class="hwp-form__label">검색 옵션</label>
+            <div style="font-size: 12px; color: var(--hwp-text-muted);">
+              ☑ 대소문자 구분 안 함 &nbsp; ☑ 닉네임 포함 &nbsp; ☐ 정규식
+            </div>
+          </div>
+          <div class="hwp-form__actions">
+            <button class="hwp-form__btn" type="button">바꾸기</button>
+            <button class="hwp-form__btn hwp-form__btn--primary" type="submit">다음 찾기</button>
+          </div>
+        </form>
+
+        <p class="hwp-page__lead hwp-page__lead--indent">
+          "Bora" 으로 검색된 결과 총 4건이 발견되었다. 발견 위치를 클릭하면 해당 대화 본문으로 이동한다.
+        </p>
+
+        <table class="hwp-table">
+          <thead>
+            <tr>
+              <th style="width:36px;">#</th>
+              <th>발견 위치</th>
+              <th style="width:90px;">유형</th>
+              <th style="width:100px;">시각</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="hwp-table__num">1</td>
+              <td>
+                <div class="hwp-chat-row">
+                  <div class="hwp-chat-row__avatar hwp-chat-row__avatar--online">
+                    <img src="https://i.pravatar.cc/80?img=32" alt="" />
+                  </div>
+                  <div class="hwp-chat-row__meta">
+                    <span class="hwp-chat-row__name"><a href="chat.html">Bora (스터디 메이트)</a></span>
+                    <span class="hwp-chat-row__preview">Hailey야 AI 기초 탄탄 2기 시작했네! 화이팅 🔥</span>
+                  </div>
+                </div>
+              </td>
+              <td>대화 본문</td>
+              <td class="hwp-table__time">21:27</td>
+            </tr>
+            <tr>
+              <td class="hwp-table__num">2</td>
+              <td>
+                <div class="hwp-chat-row">
+                  <div class="hwp-chat-row__avatar hwp-chat-row__avatar--online">
+                    <img src="https://i.pravatar.cc/80?img=32" alt="" />
+                  </div>
+                  <div class="hwp-chat-row__meta">
+                    <span class="hwp-chat-row__name"><a href="chat.html">Bora (스터디 메이트)</a></span>
+                    <span class="hwp-chat-row__preview">1-2주차 졸업과제 뭐로 할 거야?</span>
+                  </div>
+                </div>
+              </td>
+              <td>대화 본문</td>
+              <td class="hwp-table__time">21:31</td>
+            </tr>
+            <tr>
+              <td class="hwp-table__num">3</td>
+              <td>
+                <div class="hwp-chat-row">
+                  <div class="hwp-chat-row__avatar hwp-chat-row__avatar--online">
+                    <img src="https://i.pravatar.cc/80?img=32" alt="" />
+                  </div>
+                  <div class="hwp-chat-row__meta">
+                    <span class="hwp-chat-row__name"><a href="friends.html">Bora (기획팀)</a></span>
+                    <span class="hwp-chat-row__preview">기획팀 / 선임 / K-1031</span>
+                  </div>
+                </div>
+              </td>
+              <td>연락처</td>
+              <td class="hwp-table__time">—</td>
+            </tr>
+            <tr>
+              <td class="hwp-table__num">4</td>
+              <td>
+                <div class="hwp-chat-row">
+                  <div class="hwp-chat-row__avatar hwp-chat-row__avatar--online">
+                    <img src="https://i.pravatar.cc/80?img=32" alt="" />
+                  </div>
+                  <div class="hwp-chat-row__meta">
+                    <span class="hwp-chat-row__name"><a href="chat.html">Bora (기획팀)</a></span>
+                    <span class="hwp-chat-row__preview">참석자: Bora, 본인</span>
+                  </div>
+                </div>
+              </td>
+              <td>메타 정보</td>
+              <td class="hwp-table__time">—</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p class="hwp-page__meta">— 이상 4건 —</p>
+      </article>
+    </main>
+
+    <footer class="hwp-statusbar">
+      <span class="hwp-statusbar__item">1/1쪽</span>
+      <span class="hwp-statusbar__item">1단</span>
+      <span class="hwp-statusbar__item">1줄</span>
+      <span class="hwp-statusbar__item">1칸</span>
+      <span class="hwp-statusbar__item">문단 나눔</span>
+      <span class="hwp-statusbar__item">1/1구역</span>
+      <span class="hwp-statusbar__item">삽입</span>
+      <span class="hwp-statusbar__spacer"></span>
+      <div class="hwp-statusbar__zoom">
+        <i class="fas fa-magnifying-glass-minus"></i>
+        <div class="hwp-statusbar__zoom-slider"></div>
+        <i class="fas fa-magnifying-glass-plus"></i>
+        <span>87%</span>
+      </div>
+      <span class="hwp-statusbar__item">두벌식</span>
+    </footer>
+  </div>
+</body>
+</html>

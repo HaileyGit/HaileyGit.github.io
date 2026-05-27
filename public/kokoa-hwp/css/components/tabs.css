@@ -1,0 +1,84 @@
+/* 한글의 "열린 문서" 탭 — toolbar 아래 / ruler 위 */
+.hwp-tabs {
+  display: flex;
+  align-items: stretch;
+  background-color: #dde1e4;
+  border-bottom: 1px solid var(--hwp-border);
+  padding: 0 8px;
+  height: 30px;
+  font-size: 12px;
+  gap: 0;
+  overflow-x: auto;
+}
+
+.hwp-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 14px;
+  border-right: 1px solid var(--hwp-border-light);
+  background-color: #cdd1d4;
+  color: #555;
+  text-decoration: none;
+  position: relative;
+  top: 4px;
+  border-radius: 4px 4px 0 0;
+  white-space: nowrap;
+  font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+  border-top: 1px solid var(--hwp-border-light);
+  border-left: 1px solid var(--hwp-border-light);
+}
+
+.hwp-tab:hover {
+  background-color: #d8dcdf;
+}
+
+.hwp-tab__icon {
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+.hwp-tab__close {
+  font-size: 10px;
+  opacity: 0.4;
+  margin-left: 4px;
+}
+
+.hwp-tab__close:hover {
+  opacity: 1;
+}
+
+/* 현재 활성 탭: 흰 종이 색, 살짝 더 위, 진한 텍스트 */
+.hwp-tab--active {
+  background-color: var(--hwp-page);
+  color: var(--hwp-text);
+  font-weight: 500;
+  z-index: 1;
+  top: 2px;
+  border-bottom: 1px solid var(--hwp-page);
+  margin-bottom: -1px;
+}
+
+.hwp-tab--active .hwp-tab__icon {
+  opacity: 1;
+  color: var(--hwp-blue);
+}
+
+/* 우측 + 새 탭 버튼 */
+.hwp-tab--new {
+  background-color: transparent;
+  border: none;
+  color: #666;
+  font-size: 14px;
+  padding: 0 10px;
+  display: inline-flex;
+  align-items: center;
+  cursor: default;
+  top: 4px;
+  position: relative;
+}
+
+.hwp-tab--new:hover {
+  background-color: #cdd1d4;
+  border-radius: 4px 4px 0 0;
+}

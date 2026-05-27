@@ -1,0 +1,71 @@
+/* 바탕글 / 대표 / 함초롬바탕 / 10.0 / 정렬 */
+.hwp-formatbar {
+  display: flex;
+  align-items: center;
+  height: 28px;
+  background-color: var(--hwp-toolbar-bg);
+  border-bottom: 1px solid var(--hwp-border-light);
+  padding: 0 8px;
+  gap: 6px;
+  font-size: 12px;
+}
+
+.hwp-formatbar__select {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 6px;
+  background-color: white;
+  border: 1px solid var(--hwp-border-light);
+  height: 22px;
+}
+
+.hwp-formatbar__select--wide   { min-width: 90px; }
+.hwp-formatbar__select--font   { min-width: 120px; }
+.hwp-formatbar__select--size   { width: 60px; }
+
+.hwp-formatbar__select i {
+  font-size: 10px;
+  color: #888;
+  margin-left: auto;
+}
+
+.hwp-formatbar__divider {
+  width: 1px;
+  height: 18px;
+  background-color: var(--hwp-border-light);
+  margin: 0 4px;
+}
+
+.hwp-formatbar__btn {
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+  font-size: 13px;
+  color: #4a4a4a;
+}
+
+.hwp-formatbar__btn:hover {
+  background-color: #e3eaf2;
+}
+
+.hwp-formatbar__color {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  width: 22px;
+  height: 22px;
+  font-size: 11px;
+}
+
+.hwp-formatbar__color-bar {
+  width: 16px;
+  height: 4px;
+  margin-top: 1px;
+}
+
+.hwp-formatbar__color--red .hwp-formatbar__color-bar  { background-color: var(--hwp-red); }
+.hwp-formatbar__color--yellow .hwp-formatbar__color-bar { background-color: #ffd400; }

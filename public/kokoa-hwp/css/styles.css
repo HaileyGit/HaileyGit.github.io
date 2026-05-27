@@ -1,0 +1,22 @@
+/* HWP Skin - styles hub */
+@import "reset.css";
+@import "variables.css";
+@import "components/window-frame.css";
+@import "components/menu-bar.css";
+@import "components/toolbar.css";
+@import "components/format-bar.css";
+@import "components/tabs.css";
+@import "components/ruler.css";
+@import "components/document.css";
+@import "components/status-bar.css";
+@import "screens/chat.css";
+@import "screens/chats.css";
+@import "screens/misc.css";
+
+body {
+  font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', -apple-system,
+    BlinkMacSystemFont, sans-serif;
+  font-size: 12px;
+  color: #2e2e2e;
+  background-color: #c4c8cb;
+}

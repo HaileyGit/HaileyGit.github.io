@@ -1,0 +1,16 @@
+:root {
+  --hwp-bg: #c4c8cb;          /* 창 바깥 회색 */
+  --hwp-toolbar-bg: #f1f3f5;  /* 도구모음 배경 */
+  --hwp-border: #b4b9bd;
+  --hwp-border-light: #d9dde0;
+  --hwp-ruler-bg: #f6f7f8;
+  --hwp-page: #ffffff;
+  --hwp-page-shadow: 0 0 0 1px #aab0b4, 0 2px 8px rgba(0, 0, 0, 0.15);
+  --hwp-text: #2e2e2e;
+  --hwp-text-muted: #76797b;
+  --hwp-blue: #0078d4;        /* HWP 강조색 */
+  --hwp-red: #d83b3b;         /* 빨강 — 본문 메뉴 첫 글자 */
+  --hwp-yellow-mark: #fff6a8; /* 형광펜 */
+  --hwp-comment: #fffbe6;     /* 메모 박스 배경 */
+  --hwp-comment-border: #f0d97a;
+}

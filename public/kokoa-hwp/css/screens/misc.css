@@ -1,0 +1,182 @@
+/* HWP 본문 내 공통 폼/안내 — login / find / more / settings */
+
+/* 폼 박스 — 로그인 / 검색 입력 등 */
+.hwp-form {
+  margin: 30px auto;
+  max-width: 420px;
+  background-color: #fbfbfb;
+  border: 1px solid var(--hwp-border-light);
+  padding: 24px 28px;
+  font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+}
+
+.hwp-form__title {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--hwp-border-light);
+}
+
+.hwp-form__row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  gap: 12px;
+}
+
+.hwp-form__label {
+  width: 78px;
+  font-size: 13px;
+  color: var(--hwp-text);
+}
+
+.hwp-form__input {
+  flex: 1;
+  padding: 6px 10px;
+  border: 1px solid #b4b9bd;
+  background-color: white;
+  font-size: 13px;
+  font-family: inherit;
+  outline: none;
+}
+
+.hwp-form__input:focus {
+  border-color: var(--hwp-blue);
+}
+
+.hwp-form__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 18px;
+  padding-top: 12px;
+  border-top: 1px solid var(--hwp-border-light);
+}
+
+.hwp-form__btn {
+  padding: 6px 18px;
+  border: 1px solid var(--hwp-border);
+  background: linear-gradient(180deg, #fafafa, #e5e8eb);
+  font-size: 13px;
+  cursor: pointer;
+  font-family: inherit;
+  color: var(--hwp-text);
+}
+
+.hwp-form__btn:hover {
+  background: linear-gradient(180deg, #f0f0f0, #d8dcdf);
+}
+
+.hwp-form__btn--primary {
+  background: linear-gradient(180deg, #4a8fdc, #2a72c9);
+  color: white;
+  border-color: #1e5fa8;
+}
+
+.hwp-form__btn--primary:hover {
+  background: linear-gradient(180deg, #3a7fc8, #1f64b9);
+}
+
+.hwp-form__help {
+  text-align: center;
+  margin-top: 14px;
+  font-size: 12px;
+  color: var(--hwp-text-muted);
+}
+
+.hwp-form__help a {
+  color: var(--hwp-blue);
+}
+
+/* more — 프로필 헤더 카드 */
+.hwp-profile {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 20px 0 28px;
+  padding: 16px 18px;
+  background-color: #fcfcfc;
+  border: 1px solid var(--hwp-border-light);
+  font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+}
+
+.hwp-profile__avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.hwp-profile__avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hwp-profile__name {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.hwp-profile__meta {
+  font-size: 12px;
+  color: var(--hwp-text-muted);
+}
+
+/* more — 추천 아이콘 4종 노란 사각 */
+.hwp-suggestions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+  font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+}
+
+.hwp-suggestion {
+  flex: 1;
+  min-width: 110px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background-color: white;
+  border: 1px solid var(--hwp-border-light);
+}
+
+.hwp-suggestion__icon {
+  width: 40px;
+  height: 40px;
+  background-color: #f7e600;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.hwp-suggestion__label {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* settings — 작은 토글 표시 */
+.hwp-toggle {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.hwp-toggle--on  { background-color: #d6f0d8; color: #1f8a3a; }
+.hwp-toggle--off { background-color: #e9ecef; color: #76797b; }
+
+.hwp-toggle--badge {
+  background-color: var(--hwp-red);
+  color: white;
+}

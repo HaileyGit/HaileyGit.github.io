@@ -1,0 +1,23 @@
+/* 파일 / 편집 / 보기 / 입력 ... */
+.hwp-menubar {
+  display: flex;
+  align-items: center;
+  height: 26px;
+  background-color: var(--hwp-toolbar-bg);
+  border-bottom: 1px solid var(--hwp-border-light);
+  padding: 0 12px;
+  gap: 16px;
+  font-size: 13px;
+}
+
+.hwp-menubar__item {
+  cursor: default;
+  color: #2e2e2e;
+  user-select: none;
+}
+
+.hwp-menubar__item:hover {
+  background-color: #d8e4f0;
+  padding: 2px 4px;
+  margin: 0 -4px;
+}

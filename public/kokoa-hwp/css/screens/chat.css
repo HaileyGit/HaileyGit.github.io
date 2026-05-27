@@ -1,0 +1,120 @@
+/* HWP 본문 안의 "대화록 transcript" */
+
+.transcript {
+  margin-top: 20px;
+}
+
+.transcript__entry {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 18px;
+  align-items: flex-start;
+}
+
+.transcript__speaker {
+  flex-shrink: 0;
+  width: 96px;
+  font-weight: 600;
+  color: var(--hwp-text);
+  font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.transcript__speaker--own {
+  color: var(--hwp-blue);
+}
+
+.transcript__body {
+  flex: 1;
+  font-size: 14px;
+}
+
+.transcript__time {
+  margin-left: 8px;
+  font-size: 11px;
+  color: var(--hwp-text-muted);
+  font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+}
+
+/* 형광펜 강조 — 보낸 메시지 본문에 살짝 노란 배경 */
+.transcript__entry--own .transcript__body {
+  background-color: var(--hwp-yellow-mark);
+  padding: 0 4px;
+  display: inline-block;
+}
+
+.transcript__entry--own {
+  align-items: baseline;
+}
+
+/* 본문 안의 "주석/메모" 박스 — 보낸 메시지를 메모로 표현 (대안) */
+.hwp-memo {
+  background-color: var(--hwp-comment);
+  border-left: 3px solid var(--hwp-comment-border);
+  padding: 8px 12px;
+  font-size: 13px;
+  color: #6b5800;
+  margin: 14px 0;
+  font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+}
+
+.hwp-memo__label {
+  font-weight: 600;
+  margin-right: 6px;
+  font-size: 11px;
+  color: #8a6f00;
+}
+
+/* 본문 끝 입력 줄 — 커서가 깜빡이는 빈 줄 */
+.transcript__input {
+  display: flex;
+  gap: 12px;
+  margin-top: 26px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--hwp-border-light);
+  align-items: center;
+}
+
+.transcript__input-prompt {
+  width: 96px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--hwp-blue);
+  font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+}
+
+.transcript__input-field {
+  flex: 1;
+  font-family: inherit;
+  font-size: 14px;
+  border: none;
+  background: transparent;
+  outline: none;
+  color: var(--hwp-text);
+  padding: 4px 0;
+}
+
+/* 커서 깜빡임 */
+.transcript__input::after {
+  content: '';
+  display: inline-block;
+  width: 1px;
+  height: 16px;
+  background-color: var(--hwp-text);
+  margin-left: -2px;
+  animation: blink 1s steps(2) infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* 메인 레이아웃 */
+.hwp-app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: var(--hwp-bg);
+}

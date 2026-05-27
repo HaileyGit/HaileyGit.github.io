@@ -1,0 +1,34 @@
+/* 한글 윈도우 프레임 — 가장 위 빨/노/초 신호등 + 제목 */
+.hwp-titlebar {
+  display: flex;
+  align-items: center;
+  height: 28px;
+  background: linear-gradient(180deg, #ededed, #d4d4d4);
+  border-bottom: 1px solid #a8acb0;
+  padding: 0 10px;
+  position: relative;
+}
+
+.hwp-titlebar__lights {
+  display: flex;
+  gap: 8px;
+}
+
+.hwp-titlebar__lights span {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: block;
+}
+
+.hwp-titlebar__lights .light--red    { background-color: #ff5f57; }
+.hwp-titlebar__lights .light--yellow { background-color: #febc2e; }
+.hwp-titlebar__lights .light--green  { background-color: #28c840; }
+
+.hwp-titlebar__title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 13px;
+  color: #333;
+}

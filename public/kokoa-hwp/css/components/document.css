@@ -1,0 +1,68 @@
+/* 흰 문서 페이지 영역 */
+.hwp-workspace {
+  flex: 1;
+  background-color: var(--hwp-bg);
+  padding: 24px 60px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow-y: auto;
+  position: relative;
+}
+
+.hwp-page {
+  width: 100%;
+  max-width: 720px;
+  min-height: 880px;
+  background-color: var(--hwp-page);
+  box-shadow: var(--hwp-page-shadow);
+  padding: 80px 70px;
+  font-family: 'Nanum Myeongjo', 'AppleMyungjo', 'Noto Serif KR',
+    'Apple SD Gothic Neo', serif;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--hwp-text);
+  position: relative;
+}
+
+/* 페이지 모서리 작은 마진 표시 (좌상/우상 ㄱ자 마크) */
+.hwp-page::before,
+.hwp-page::after {
+  content: '';
+  position: absolute;
+  top: 40px;
+  width: 18px;
+  height: 18px;
+  border-color: #888;
+  border-style: solid;
+}
+
+.hwp-page::before {
+  left: 40px;
+  border-width: 1px 0 0 1px;
+}
+
+.hwp-page::after {
+  right: 40px;
+  border-width: 1px 1px 0 0;
+}
+
+.hwp-page__title {
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 24px;
+  letter-spacing: 1px;
+}
+
+.hwp-page__subtitle {
+  text-align: center;
+  font-size: 12px;
+  color: var(--hwp-text-muted);
+  margin-bottom: 40px;
+}
+
+.hwp-page__paragraph {
+  margin-bottom: 8px;
+  text-indent: 14px;
+}

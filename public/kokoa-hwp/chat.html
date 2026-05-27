@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>빈 문서 2 — 한글</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="hwp-app">
+    <!-- 타이틀바 -->
+    <div class="hwp-titlebar">
+      <div class="hwp-titlebar__lights">
+        <span class="light--red"></span>
+        <span class="light--yellow"></span>
+        <span class="light--green"></span>
+      </div>
+      <div class="hwp-titlebar__title">📄 빈 문서 2</div>
+    </div>
+
+    <!-- 메뉴바 -->
+    <nav class="hwp-menubar">
+      <span class="hwp-menubar__item">파일</span>
+      <span class="hwp-menubar__item">편집</span>
+      <span class="hwp-menubar__item">보기</span>
+      <span class="hwp-menubar__item">입력</span>
+      <span class="hwp-menubar__item">서식</span>
+      <span class="hwp-menubar__item">쪽</span>
+      <span class="hwp-menubar__item">보안</span>
+      <span class="hwp-menubar__item">검토</span>
+      <span class="hwp-menubar__item">도구</span>
+      <span class="hwp-menubar__item">창</span>
+      <span class="hwp-menubar__item">도움말</span>
+    </nav>
+
+    <!-- 도구모음 -->
+    <div class="hwp-toolbar">
+      <div class="hwp-toolbar__group">
+        <div class="hwp-toolbar__btn">
+          <i class="far fa-file"></i><span>새 문서</span>
+        </div>
+        <div class="hwp-toolbar__btn">
+          <i class="far fa-folder-open"></i><span>불러오기</span>
+        </div>
+        <div class="hwp-toolbar__btn hwp-toolbar__btn--save">
+          <i class="fas fa-save"></i><span>저장하기</span>
+        </div>
+        <div class="hwp-toolbar__btn">
+          <i class="fas fa-print"></i><span>인쇄</span>
+        </div>
+      </div>
+
+      <div class="hwp-toolbar__group">
+        <div class="hwp-toolbar__btn">
+          <i class="fas fa-cut"></i><span>오려두기</span>
+        </div>
+        <div class="hwp-toolbar__btn">
+          <i class="far fa-copy"></i><span>복사하기</span>
+        </div>
+        <div class="hwp-toolbar__btn">
+          <i class="fas fa-paste"></i><span>붙이기</span>
+        </div>
+        <div class="hwp-toolbar__btn">
+          <i class="fas fa-brush"></i><span>모양 복사</span>
+        </div>
+      </div>
+
+      <div class="hwp-toolbar__group">
+        <div class="hwp-toolbar__btn">
+          <i class="fas fa-undo"></i><span>되돌리기</span>
+        </div>
+        <div class="hwp-toolbar__btn">
+          <i class="fas fa-redo"></i><span>다시 실행</span>
+        </div>
+      </div>
+
+      <div class="hwp-toolbar__group">
+        <div class="hwp-toolbar__btn">
+          <i class="fas fa-table"></i><span>표</span>
+        </div>
+        <div class="hwp-toolbar__btn hwp-toolbar__btn--accent">
+          <i class="fas fa-chart-column"></i><span>차트</span>
+        </div>
+        <div class="hwp-toolbar__btn">
+          <i class="fas fa-shapes"></i><span>도형</span>
+        </div>
+        <div class="hwp-toolbar__btn">
+          <i class="far fa-image"></i><span>그림</span>
+        </div>
+      </div>
+
+      <div class="hwp-toolbar__group">
+        <div class="hwp-toolbar__btn">
+          <i class="fas fa-arrow-pointer"></i><span>개체 선택</span>
+        </div>
+        <div class="hwp-toolbar__btn hwp-toolbar__btn--red">
+          <i class="fas fa-lock"></i><span>개체 보호</span>
+        </div>
+        <div class="hwp-toolbar__btn">
+          <i class="fas fa-window-restore"></i><span>작업 창</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 서식 바 -->
+    <div class="hwp-formatbar">
+      <div class="hwp-formatbar__select hwp-formatbar__select--wide">
+        바탕글
+        <i class="fas fa-chevron-down"></i>
+      </div>
+      <div class="hwp-formatbar__select hwp-formatbar__select--wide">
+        대표
+        <i class="fas fa-chevron-down"></i>
+      </div>
+      <div class="hwp-formatbar__select hwp-formatbar__select--font">
+        함초롬바탕
+        <i class="fas fa-chevron-down"></i>
+      </div>
+      <div class="hwp-formatbar__select hwp-formatbar__select--size">
+        10.0
+        <i class="fas fa-chevron-down"></i>
+      </div>
+
+      <div class="hwp-formatbar__divider"></div>
+
+      <div class="hwp-formatbar__btn"><b>가</b></div>
+      <div class="hwp-formatbar__btn"><i>가</i></div>
+      <div class="hwp-formatbar__btn"><u>가</u></div>
+
+      <div class="hwp-formatbar__divider"></div>
+
+      <div class="hwp-formatbar__color hwp-formatbar__color--red">
+        가<div class="hwp-formatbar__color-bar"></div>
+      </div>
+      <div class="hwp-formatbar__color hwp-formatbar__color--yellow">
+        🖍<div class="hwp-formatbar__color-bar"></div>
+      </div>
+
+      <div class="hwp-formatbar__divider"></div>
+
+      <div class="hwp-formatbar__btn"><i class="fas fa-align-left"></i></div>
+      <div class="hwp-formatbar__btn"><i class="fas fa-align-center"></i></div>
+      <div class="hwp-formatbar__btn"><i class="fas fa-align-right"></i></div>
+      <div class="hwp-formatbar__btn"><i class="fas fa-align-justify"></i></div>
+
+      <div class="hwp-formatbar__divider"></div>
+
+      <div class="hwp-formatbar__select hwp-formatbar__select--size">
+        160%
+        <i class="fas fa-chevron-down"></i>
+      </div>
+    </div>
+
+    <!-- 열린 문서 탭 -->
+    <div class="hwp-tabs">
+      <a href="index.html" class="hwp-tab"><i class="far fa-id-card hwp-tab__icon"></i>사용자 인증<span class="hwp-tab__close">×</span></a>
+      <a href="chats.html" class="hwp-tab"><i class="far fa-file-lines hwp-tab__icon"></i>오늘의 대화 기록<span class="hwp-tab__close">×</span></a>
+      <a href="friends.html" class="hwp-tab"><i class="far fa-address-book hwp-tab__icon"></i>동료 연락처<span class="hwp-tab__close">×</span></a>
+      <a href="find.html" class="hwp-tab"><i class="fas fa-magnifying-glass hwp-tab__icon"></i>검색 결과<span class="hwp-tab__close">×</span></a>
+      <a href="more.html" class="hwp-tab"><i class="far fa-user hwp-tab__icon"></i>내 정보<span class="hwp-tab__close">×</span></a>
+      <a href="settings.html" class="hwp-tab"><i class="fas fa-gear hwp-tab__icon"></i>환경 설정<span class="hwp-tab__close">×</span></a>
+      <a href="chat.html" class="hwp-tab hwp-tab--active"><i class="far fa-comments hwp-tab__icon"></i>AI 기초 탄탄 2기 스터디<span class="hwp-tab__close">×</span></a>
+      <span class="hwp-tab hwp-tab--new">+</span>
+    </div>
+
+    <!-- 가로 줄자 -->
+    <div class="hwp-ruler">
+      <div class="hwp-ruler__numbers">
+        <span>2</span><span>1</span><span>2</span><span>3</span><span>4</span>
+        <span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
+        <span>10</span><span>11</span><span>12</span><span>13</span><span>14</span>
+        <span>15</span><span>16</span><span>17</span><span>18</span>
+      </div>
+    </div>
+
+    <!-- 작업 영역 (페이지) -->
+    <main class="hwp-workspace">
+      <div class="hwp-vruler"></div>
+      <article class="hwp-page">
+        <h1 class="hwp-page__title">AI 기초 탄탄 2기 스터디</h1>
+        <p class="hwp-page__subtitle">2030. 04. 21. (월) / 작성자: 본인 (Hailey) / 상대방: Bora</p>
+
+        <div class="transcript">
+          <div class="transcript__entry">
+            <div class="transcript__speaker">Bora</div>
+            <div class="transcript__body">
+              Hailey 님, AI 기초 탄탄 2기 시작을 축하드립니다. 1-2주차 잘 따라오고 계신가요?
+              <span class="transcript__time">21:27</span>
+            </div>
+          </div>
+
+          <div class="transcript__entry transcript__entry--own">
+            <div class="transcript__speaker transcript__speaker--own">본인</div>
+            <div class="transcript__body">
+              안녕하세요. 네, 강의 잘 듣고 있습니다. 감사합니다.
+            </div>
+            <span class="transcript__time">21:30</span>
+          </div>
+
+          <div class="transcript__entry">
+            <div class="transcript__speaker">Bora</div>
+            <div class="transcript__body">
+              졸업과제 방향은 정하셨을까요? 코코아 클론이 기본 주제입니다.
+              <span class="transcript__time">21:31</span>
+            </div>
+          </div>
+
+          <aside class="hwp-memo">
+            <span class="hwp-memo__label">[메모]</span>
+            졸업과제 마감일: 2030. 04. 21. (월) / 제출 형식: GitHub Pages (github.io URL)
+          </aside>
+
+          <div class="transcript__entry transcript__entry--own">
+            <div class="transcript__speaker transcript__speaker--own">본인</div>
+            <div class="transcript__body">
+              멀리서 보면 업무 중인 것 처럼 보이게, 한글 프로그램 안에다가 코코아톡을 넣을거에요~
+            </div>
+            <span class="transcript__time">21:33</span>
+          </div>
+
+          <div class="transcript__entry">
+            <div class="transcript__speaker">Bora</div>
+            <div class="transcript__body">
+              화이팅~ 힘내세요!
+              <span class="transcript__time">21:34</span>
+            </div>
+          </div>
+
+          <div class="transcript__entry transcript__entry--own">
+            <div class="transcript__speaker transcript__speaker--own">본인</div>
+            <div class="transcript__body">
+              Bora님도 화이팅~
+            </div>
+            <span class="transcript__time">21:35</span>
+          </div>
+
+          <!-- 본문 끝 — 입력 줄 -->
+          <div class="transcript__input">
+            <div class="transcript__input-prompt">본인</div>
+            <input
+              class="transcript__input-field"
+              type="text"
+              placeholder="이어서 입력하세요..."
+            />
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <!-- 하단 상태바 -->
+    <footer class="hwp-statusbar">
+      <span class="hwp-statusbar__item">1/1쪽</span>
+      <span class="hwp-statusbar__item">1단</span>
+      <span class="hwp-statusbar__item">1줄</span>
+      <span class="hwp-statusbar__item">1칸</span>
+      <span class="hwp-statusbar__item">문단 나눔</span>
+      <span class="hwp-statusbar__item">1/1구역</span>
+      <span class="hwp-statusbar__item">삽입</span>
+      <span class="hwp-statusbar__spacer"></span>
+      <div class="hwp-statusbar__zoom">
+        <i class="fas fa-magnifying-glass-minus"></i>
+        <div class="hwp-statusbar__zoom-slider"></div>
+        <i class="fas fa-magnifying-glass-plus"></i>
+        <span>87%</span>
+      </div>
+      <span class="hwp-statusbar__item">두벌식</span>
+    </footer>
+  </div>
+</body>
+</html>

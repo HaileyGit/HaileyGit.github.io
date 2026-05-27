@@ -1,0 +1,54 @@
+/* 1/1쪽 | 1단 | 1줄 | 1칸 | 문단 나눔 | 1/1구역 | 삽입 | 87% | 두벌식 */
+.hwp-statusbar {
+  display: flex;
+  align-items: center;
+  height: 26px;
+  background-color: var(--hwp-toolbar-bg);
+  border-top: 1px solid var(--hwp-border-light);
+  padding: 0 8px;
+  gap: 0;
+  font-size: 11px;
+  color: #444;
+}
+
+.hwp-statusbar__item {
+  padding: 0 12px;
+  border-right: 1px solid var(--hwp-border-light);
+  white-space: nowrap;
+}
+
+.hwp-statusbar__item:last-child {
+  border-right: none;
+}
+
+.hwp-statusbar__spacer {
+  flex: 1;
+}
+
+.hwp-statusbar__zoom {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 8px;
+}
+
+.hwp-statusbar__zoom-slider {
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(to right, var(--hwp-blue) 0% 60%, #d4d4d4 60% 100%);
+  border-radius: 2px;
+  position: relative;
+}
+
+.hwp-statusbar__zoom-slider::after {
+  content: '';
+  position: absolute;
+  left: 60%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  background: white;
+  border: 1px solid #888;
+  border-radius: 50%;
+}

@@ -1,0 +1,168 @@
+/* HWP 본문 안의 채팅 목록 표 — 카톡스러움 + HWP 표 프레임 */
+
+.hwp-table {
+  width: 100%;
+  margin-top: 24px;
+  font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+  font-size: 13px;
+  border-collapse: collapse;
+}
+
+.hwp-table th,
+.hwp-table td {
+  border: 1px solid #5a5a5a;
+  padding: 8px 12px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.hwp-table th {
+  background-color: #f3f3f3;
+  font-weight: 600;
+  text-align: center;
+  font-size: 12px;
+}
+
+.hwp-table tbody tr:hover {
+  background-color: #fafbfc;
+}
+
+.hwp-table .hwp-table__num {
+  text-align: center;
+  width: 36px;
+  color: var(--hwp-text-muted);
+}
+
+.hwp-table .hwp-table__time {
+  color: var(--hwp-text-muted);
+  font-size: 12px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* ───── 채팅 row 본체: 아바타 + 이름/미리보기 ───── */
+.hwp-chat-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hwp-chat-row__avatar {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  background-color: #ddd;
+}
+
+.hwp-chat-row__avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 온라인 도트 (오른쪽 아래 작은 초록) */
+.hwp-chat-row__avatar--online::after,
+.hwp-chat-row__avatar--away::after,
+.hwp-chat-row__avatar--offline::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+.hwp-chat-row__avatar--online::after  { background-color: #2ecc71; }
+.hwp-chat-row__avatar--away::after    { background-color: #f39c12; }
+.hwp-chat-row__avatar--offline::after { background-color: #bdc3c7; }
+
+.hwp-chat-row__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+  flex: 1;
+}
+
+.hwp-chat-row__name {
+  font-weight: 600;
+  color: var(--hwp-text);
+  font-size: 14px;
+}
+
+.hwp-chat-row__name a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.hwp-chat-row__name a:hover {
+  color: var(--hwp-blue);
+}
+
+.hwp-chat-row__preview {
+  color: var(--hwp-text-muted);
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 280px;
+}
+
+/* 미확인 배지 — 빨간 동그라미 */
+.hwp-table__unread {
+  display: inline-block;
+  background-color: var(--hwp-red);
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 8px;
+  min-width: 18px;
+  text-align: center;
+}
+
+/* 본문 단락 */
+.hwp-page__lead {
+  margin-bottom: 12px;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.hwp-page__lead--indent {
+  text-indent: 14px;
+}
+
+.hwp-page__meta {
+  margin-top: 30px;
+  font-size: 12px;
+  color: var(--hwp-text-muted);
+  text-align: right;
+  font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+}
+
+/* 상태 텍스트 (friends 용) */
+.hwp-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--hwp-text-muted);
+}
+
+.hwp-status::before {
+  content: '';
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #bdc3c7;
+}
+
+.hwp-status--online::before  { background-color: #2ecc71; }
+.hwp-status--away::before    { background-color: #f39c12; }
+.hwp-status--offline::before { background-color: #bdc3c7; }
