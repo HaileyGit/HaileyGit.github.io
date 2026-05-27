@@ -10,7 +10,7 @@ src/
 │   ├── challenges/
 │   ├── projects/
 │   ├── work/
-│   └── blog/
+│   └── essays/
 ├── content.config.ts # 콘텐츠 컬렉션 스키마
 ├── layouts/
 │   └── BaseLayout.astro
@@ -20,7 +20,7 @@ src/
 │   ├── challenges/{index,[...slug]}.astro
 │   ├── projects/{index,[...slug]}.astro
 │   ├── work/{index,[...slug]}.astro
-│   └── blog/{index,[...slug]}.astro
+│   └── essays/{index,[...slug]}.astro
 └── styles/
     └── global.css    # Tailwind v4
 ```

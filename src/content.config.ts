@@ -32,15 +32,15 @@ const work = defineCollection({
   }),
 });
 
-const blog = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/blog' }),
+const essays = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/essays' }),
   schema: z.object({
     title: z.string(),
-    description: z.string().optional(),
+    excerpt: z.string().optional(),
     date: z.coerce.date(),
     tags: z.array(z.string()).optional(),
     draft: z.boolean().default(false),
   }),
 });
 
-export const collections = { challenges, projects, work, blog };
+export const collections = { challenges, projects, work, essays };

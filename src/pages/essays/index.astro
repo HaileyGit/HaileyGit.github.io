@@ -1,0 +1,36 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const posts = (await getCollection('essays', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const fmt = (d: Date) => d.toISOString().slice(0, 10);
+---
+<BaseLayout title="Essays · Hailey">
+  <header>
+    <h1 class="text-3xl font-bold tracking-tight">Essays</h1>
+  </header>
+
+  {posts.length === 0 ? (
+    <p class="mt-16 text-sm text-neutral-500">아직 쓴 글이 없습니다.</p>
+  ) : (
+    <ul class="mt-16 divide-y divide-neutral-200 dark:divide-neutral-800">
+      {posts.map((post) => (
+        <li>
+          <a href={`/essays/${post.id}`} class="group block py-8">
+            <time class="block text-sm text-neutral-500">{fmt(post.data.date)}</time>
+            <h2 class="mt-2 text-xl font-semibold tracking-tight transition group-hover:text-blue-600">
+              {post.data.title}
+            </h2>
+            {post.data.excerpt && (
+              <p class="mt-2 text-neutral-600 dark:text-neutral-400 leading-relaxed">
+                {post.data.excerpt}
+              </p>
+            )}
+          </a>
+        </li>
+      ))}
+    </ul>
+  )}
+</BaseLayout>
