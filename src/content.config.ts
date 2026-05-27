@@ -7,7 +7,7 @@ const cardSchema = z.object({
   date: z.coerce.date(),
   source: z.string().optional(),
   tags: z.array(z.string()).optional(),
-  liveUrl: z.string().url().optional(),
+  liveUrl: z.string().optional(),
   repoUrl: z.string().url().optional(),
   thumbnail: z.string().optional(),
   draft: z.boolean().default(false),
