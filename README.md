@@ -1,65 +1,66 @@
-<img src="screenshot.png" alt="Gatsby Theme Portfolio Minimal Screenshot" width="700" />
+# haileygit.github.io
 
+Hailey의 개인 포트폴리오/허브 사이트. Astro + Tailwind v4 + MDX.
+
+## 구조
+
+```
+src/
+├── content/          # MDX/MD 콘텐츠 (각 카테고리)
+│   ├── challenges/   # 노마드코더 챌린지 결과물
+│   ├── projects/     # 사이드 프로젝트
+│   ├── work/         # 실무 케이스 스터디
+│   └── blog/         # 학습 노트, 잡문
+├── content.config.ts # 콘텐츠 컬렉션 스키마
+├── layouts/
+│   └── BaseLayout.astro
+├── pages/
+│   ├── index.astro              # 홈 (4 카테고리 카드)
+│   ├── about.astro
+│   ├── challenges/{index,[...slug]}.astro
+│   ├── projects/{index,[...slug]}.astro
+│   ├── work/{index,[...slug]}.astro
+│   └── blog/{index,[...slug]}.astro
+└── styles/
+    └── global.css    # Tailwind v4
+```
+
+## 개발
+
+```bash
+npm install
+npm run dev      # http://localhost:4321
+npm run build    # 빌드 산출물 → dist/
+npm run preview  # 빌드 결과 미리보기
+```
+
+## 콘텐츠 추가
+
+`src/content/<category>/<slug>.md(x)` 파일 생성:
+
+```md
+---
+title: '제목'
+description: '설명 (선택)'
+date: 2026-05-27
+source: 'nomadcoders'   # 챌린지 출처 (선택)
+tags: ['html', 'css']
+liveUrl: 'https://...'
+repoUrl: 'https://...'
+draft: false
 ---
 
-# Gatsby Theme Portfolio Minimal
+본문...
+```
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/ca0e691f-4d6f-4a70-8d91-e94a0843c7e2/deploy-status)](https://app.netlify.com/sites/gatsby-theme-portfolio-minimal/deploys) [![Latest Version](https://img.shields.io/npm/v/gatsby-theme-portfolio-minimal/latest.svg)](https://www.npmjs.com/package/gatsby-theme-portfolio-minimal)
+스키마는 [src/content.config.ts](src/content.config.ts) 참고.
 
-#### A modern one-page portfolio with a clean yet expressive design.
+## 배포
 
-Portfolio Minimal is a Gatsby Theme. You can install it as a dependency in your project and use its building blocks to create your own site - effortless and within minutes.
+GitHub Pages — `dist/` 빌드 결과를 `deploy` 브랜치 또는 GitHub Actions로 publish.
 
-Just install the theme, add the content. That's it!
+## 주의 (Public Repo)
 
-## Resources
-
-<a href="https://gatsby-theme-portfolio-minimal.netlify.app/">Live Demo</a> · <a href="https://github.com/konstantinmuenster/gatsby-theme-portfolio-minimal/tree/main/gatsby-theme-portfolio-minimal#readme">How To Get Started</a> · <a href="#issues">Issues</a>
-
-## Features
-
-#### 🕹️ Quick and Easy Setup - Add content and deploy.
-
-Just install the theme, add content for each section, and deploy your site! This theme works seamlessly with hosts like Netlify.
-
-#### 🧰 Predefined Sections - The building blocks for your portfolio.
-
-Each section (e.g. About Me, Projects) is a standalone React component. You can add them to your portfolio as you like.
-
-#### 📓 Content Integration - Effortless without any CMS.
-
-You can add the content easily by creating local files, such as Markdown files, in your content directory.
-
-#### 💅 Responsive Design - With freshening animations.
-
-The theme is designed with a mobile-first approach and looks perfect on small and large breakpoints. Moreover, it has some nice and smooth animations.
-
-#### 🍪 [NEW] Cookie Consent Bar - Be ready for GDPR-compliant tracking.
-
-Add tracking services like Google Analytics to your site and display a GDPR-compliant cookie consent banner.
-
-#### 🌛 [NEW] Dark Mode - Based on user's preferences.
-
-If the user's OS is set to using dark mode, the Gatsby Starter will automatically switch to a dark theme too.
-
-#### ✍️ [NEW] Blog Integration - Add your own blog to your portfolio.
-
-Ever dreamed of having your own blog? With Portfolio Minimal, it's possible! Just specify the route where your blog should live and start writing your first articles!
-
-#### 💬 [NEW] Calendly Integration - Embed button to schedule calls.
-
-Allow prospects to schedule meetings with you. Directly and seamlessly on your portfolio site. This integration uses Calendly's official widget.
-
----
-
-## Issues?
-
-If you find any bugs or have feature suggestions, create a new issue or pull request 🙏
-
-Thanks a lot for using this theme! 💪
-
----
-
-<a href="https://www.buymeacoffee.com/kmuenster" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
-
-Konstantin Münster – [konstantin.digital](https://konstantin.digital)
+이 repo는 user site (`*.github.io`) 라서 **무조건 public**. commit 되는 모든 게 인터넷에 노출됨.
+- 작업 메모/대화 노트는 `2026-*/`, `**/raw.md`, `*.private.md` 패턴으로 [.gitignore](.gitignore)에서 차단되어 있음
+- 진짜 비공개로 둘 건 이 repo 밖에 보관할 것

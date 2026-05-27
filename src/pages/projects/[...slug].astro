@@ -1,0 +1,43 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const items = await getCollection('projects', ({ data }) => !data.draft);
+  return items.map((item) => ({
+    params: { slug: item.id },
+    props: { item },
+  }));
+}
+
+const { item } = Astro.props;
+const { Content } = await render(item);
+---
+<BaseLayout title={`${item.data.title} · Hailey`} description={item.data.description}>
+  <article>
+    <header class="mb-8 space-y-2">
+      <h1 class="text-3xl font-bold tracking-tight">{item.data.title}</h1>
+      <p class="text-sm text-neutral-500">
+        <time>{item.data.date.toISOString().slice(0, 10)}</time>
+      </p>
+      {(item.data.liveUrl || item.data.repoUrl) && (
+        <p class="text-sm">
+          {item.data.liveUrl && (
+            <a href={item.data.liveUrl} target="_blank" rel="noopener" class="text-blue-600 hover:underline">
+              Live →
+            </a>
+          )}
+          {item.data.liveUrl && item.data.repoUrl && <span class="mx-2 text-neutral-400">·</span>}
+          {item.data.repoUrl && (
+            <a href={item.data.repoUrl} target="_blank" rel="noopener" class="text-blue-600 hover:underline">
+              Source
+            </a>
+          )}
+        </p>
+      )}
+    </header>
+    <div class="leading-relaxed text-neutral-800 dark:text-neutral-200">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>

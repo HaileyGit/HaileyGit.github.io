@@ -1,0 +1,46 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const items = (await getCollection('work', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+<BaseLayout title="Work · Hailey" description="회사 실무 케이스 스터디">
+  <header class="space-y-2">
+    <h1 class="text-3xl font-bold tracking-tight">Work</h1>
+    <p class="text-neutral-600 dark:text-neutral-400">실무 프로젝트 케이스 스터디 (소스 공개는 제한).</p>
+  </header>
+
+  {items.length === 0 ? (
+    <p class="mt-12 text-sm text-neutral-500">아직 등록된 케이스가 없습니다.</p>
+  ) : (
+    <ul class="mt-12 space-y-8">
+      {items.map((item) => (
+        <li>
+          <a href={`/work/${item.id}`} class="group block">
+            <div class="flex items-baseline justify-between gap-4">
+              <h2 class="font-semibold transition group-hover:text-blue-600">{item.data.title}</h2>
+              {item.data.period && (
+                <span class="shrink-0 text-sm text-neutral-500">{item.data.period}</span>
+              )}
+            </div>
+            {item.data.description && (
+              <p class="mt-1 text-sm text-neutral-600 dark:text-neutral-400">
+                {item.data.description}
+              </p>
+            )}
+            {item.data.stack && (
+              <div class="mt-2 flex flex-wrap gap-1.5">
+                {item.data.stack.map((tech) => (
+                  <span class="rounded bg-neutral-100 px-2 py-0.5 text-xs text-neutral-600 dark:bg-neutral-800 dark:text-neutral-400">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            )}
+          </a>
+        </li>
+      ))}
+    </ul>
+  )}
+</BaseLayout>
