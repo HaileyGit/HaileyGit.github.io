@@ -58,9 +58,3 @@ draft: false
 ## 배포
 
 GitHub Pages — `dist/` 빌드 결과를 `deploy` 브랜치 또는 GitHub Actions로 publish.
-
-## 주의 (Public Repo)
-
-이 repo는 user site (`*.github.io`) 라서 **무조건 public**. commit 되는 모든 게 인터넷에 노출됨.
-- 작업 메모/대화 노트는 `2026-*/`, `**/raw.md`, `*.private.md` 패턴으로 [.gitignore](.gitignore)에서 차단되어 있음
-- 진짜 비공개로 둘 건 이 repo 밖에 보관할 것
