@@ -19,8 +19,18 @@ const tags: string[] = data.tags ?? [];
 
 <a
   href={`/${entry.collection}/${entry.id}`}
-  class="group p-4 gap-3 flex items-center border rounded-lg hover:bg-black/5 hover:dark:bg-white/10 border-black/15 dark:border-white/20 transition-colors duration-300 ease-in-out"
+  class="group p-4 gap-4 flex items-center border rounded-lg hover:bg-black/5 hover:dark:bg-white/10 border-black/15 dark:border-white/20 transition-colors duration-300 ease-in-out"
 >
+  {
+    data.thumbnail && (
+      <img
+        src={data.thumbnail}
+        alt=""
+        loading="lazy"
+        class="hidden sm:block w-28 aspect-video rounded object-cover shrink-0 border border-black/10 dark:border-white/15"
+      />
+    )
+  }
   <div class="w-full group-hover:text-black group-hover:dark:text-white blend">
     <div class="flex flex-wrap items-center gap-2">
       {
