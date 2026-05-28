@@ -4,8 +4,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
 const posts = (await getCollection('essays', ({ data }) => !data.draft))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-
-const fmt = (d: Date) => d.toISOString().slice(0, 10);
 ---
 <BaseLayout title="Essays · Hailey">
   <header>
@@ -19,8 +17,7 @@ const fmt = (d: Date) => d.toISOString().slice(0, 10);
       {posts.map((post) => (
         <li>
           <a href={`/essays/${post.id}`} class="group block py-8">
-            <time class="block text-sm text-neutral-500">{fmt(post.data.date)}</time>
-            <h2 class="mt-2 text-xl font-semibold tracking-tight transition group-hover:text-blue-600">
+            <h2 class="text-xl font-semibold tracking-tight transition group-hover:text-blue-600">
               {post.data.title}
             </h2>
             {post.data.excerpt && (
