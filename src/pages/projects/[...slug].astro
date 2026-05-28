@@ -17,6 +17,9 @@ const { Content } = await render(item);
   <article>
     <header class="mb-8 space-y-2">
       <h1 class="text-3xl font-bold tracking-tight">{item.data.title}</h1>
+      <p class="text-sm text-neutral-500">
+        <time>{item.data.date.toISOString().slice(0, 10)}</time>
+      </p>
       {(item.data.liveUrl || item.data.repoUrl) && (
         <p class="text-sm">
           {item.data.liveUrl && (

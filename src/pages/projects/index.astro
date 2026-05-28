@@ -17,7 +17,12 @@ const items = (await getCollection('projects', ({ data }) => !data.draft))
       {items.map((item) => (
         <li>
           <a href={`/projects/${item.id}`} class="group block">
-            <h2 class="font-semibold transition group-hover:text-blue-600">{item.data.title}</h2>
+            <div class="flex items-baseline justify-between gap-4">
+              <h2 class="font-semibold transition group-hover:text-blue-600">{item.data.title}</h2>
+              <time class="shrink-0 text-sm text-neutral-500">
+                {item.data.date.toISOString().slice(0, 10)}
+              </time>
+            </div>
             {item.data.description && (
               <p class="mt-1 text-sm text-neutral-600 dark:text-neutral-400">
                 {item.data.description}
