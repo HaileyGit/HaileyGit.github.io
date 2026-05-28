@@ -13,7 +13,7 @@ src/
 │   └── essays/
 ├── content.config.ts # 콘텐츠 컬렉션 스키마
 ├── layouts/
-│   └── BaseLayout.astro
+│   └── PageLayout.astro
 ├── pages/
 │   ├── index.astro
 │   ├── about.astro
@@ -57,3 +57,9 @@ draft: false
 ## 배포
 
 main 푸시 → GitHub Actions 자동 빌드 → GitHub Pages publish.
+
+## Credits
+
+Design system adapted from [Astro Sphere](https://github.com/markhorn-dev/astro-sphere)
+by Mark Horn (MIT). Typeface: [Atkinson Hyperlegible](https://brailleinstitute.org/freefont)
+by Braille Institute (OFL 1.1). Full license texts: [THIRD_PARTY_LICENSES.txt](THIRD_PARTY_LICENSES.txt).
