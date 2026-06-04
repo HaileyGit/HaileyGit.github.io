@@ -1,0 +1,653 @@
+/* =========================================================================
+ * 할머니 댁 안방 · Momentum — styles
+ * 베이스: _mockups/HOME-room2.html (CSS-only 줌 프로토타입)
+ * 추가: 로그인 폼 / 투두 / 셔플 버튼 등 실제 기능 요소 스타일
+ * ======================================================================= */
+
+:root {
+  --cyan: #54fcfc;
+  --amber: #ffb000;
+  --lcd-ink: #46ffba;
+  --red: #c8473f;
+  --cream: #efe7d2;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  font-family: "Galmuri11", monospace;
+  image-rendering: pixelated;
+  background: #0e0a06;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+/* 랜덤 사진을 방과 따로 놀지 않게: 살짝 블러 + 보이게(밝기 유지) */
+.bg {
+  position: fixed;
+  inset: -40px; /* 블러 가장자리 비침 방지 */
+  z-index: -2;
+  background-size: cover;
+  background-position: center;
+  filter: blur(9px) brightness(0.78) saturate(0.85);
+  transform: scale(1.06);
+  transition: background-image 0.4s;
+}
+/* LP "오늘의 한 장" 분위기 색(--mood)이 사진 위에 깔림 + 가장자리 비네트.
+   색은 JS가 LP마다 바꿔줌 → 사진은 보이되 톤이 방과 통일됨 */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(
+      160deg,
+      var(--mood, rgba(120, 70, 30, 0.4)),
+      rgba(20, 12, 6, 0.5)
+    ),
+    radial-gradient(
+      125% 100% at 50% 40%,
+      rgba(0, 0, 0, 0) 55%,
+      rgba(8, 5, 2, 0.7) 96%
+    );
+  transition: background 0.4s;
+}
+.galmono {
+  font-family: "GalmuriMono11", monospace;
+}
+.switch {
+  display: none;
+}
+.hidden {
+  display: none !important;
+}
+
+/* 클릭영역 디버그 토글 라벨 */
+.peek {
+  position: fixed;
+  top: 10px;
+  left: 12px;
+  z-index: 99;
+  font-size: 11px;
+  color: #cbb896;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 5px 9px;
+  border-radius: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* 방 무대 (room.png 비율 896:1195 고정) */
+.stage {
+  position: relative;
+  height: 96vh;
+  aspect-ratio: 896 / 1195;
+  max-width: 96vw;
+  overflow: hidden;
+  border-radius: 6px;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.8);
+}
+
+/* 줌인 되는 방 레이어 */
+.roomview {
+  position: absolute;
+  inset: 0;
+  background: url("room.png") center / cover no-repeat;
+  transition: transform 0.6s cubic-bezier(0.6, 0.02, 0.2, 1), filter 0.4s;
+  transform-origin: 50% 50%;
+}
+
+/* 항상 켜진 벽 LED 시계 (room.png의 12:00 자리에 정확히 덮음) */
+.wallclock {
+  position: absolute;
+  left: 61.9%;
+  top: 22.5%;
+  width: 10%;
+  height: 2.6%;
+  z-index: 5;
+  background: #120606;
+  border-radius: 3px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+.wallclock .clock {
+  font-family: "GalmuriMono11", monospace;
+  color: #ff2b1f;
+  font-size: clamp(7px, 2.1vh, 17px);
+  letter-spacing: 0;
+  text-shadow: 0 0 5px rgba(255, 43, 31, 0.9), 0 0 2px rgba(255, 120, 90, 0.7);
+  line-height: 1;
+  white-space: nowrap;
+}
+/* 가운데 콜론만 깜빡 → "지금 가는 시계"라는 느낌 (실제 디지털시계처럼) */
+.wallclock .colon {
+  animation: colon-blink 1s steps(1, end) infinite;
+}
+@keyframes colon-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* ===== 클릭 영역 ===== */
+.zone {
+  position: absolute;
+  z-index: 8;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: background 0.15s, box-shadow 0.15s;
+}
+/* 처음 온 사람이 어딜 누를지 알도록: 호버 없이도 늘 은은히 작아졌다 커졌다
+   따뜻한 갈색 방에서 묻히지 않게 시안색으로(고대비) */
+.zone::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  box-shadow: inset 0 0 0 3px rgba(84, 252, 252, 0.9),
+    0 0 18px 3px rgba(84, 252, 252, 0.55);
+  pointer-events: none;
+  animation: beacon 1.5s ease-in-out infinite;
+}
+@keyframes beacon {
+  0%,
+  100% {
+    transform: scale(0.94);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.95;
+  }
+}
+.zone:hover {
+  background: rgba(255, 210, 120, 0.06);
+  box-shadow: inset 0 0 0 2px rgba(255, 210, 120, 0.9),
+    0 0 16px 2px rgba(255, 210, 120, 0.3);
+}
+/* 호버하면 펄스 멈추고 또렷하게(선택 직전) */
+.zone:hover::after {
+  animation: none;
+  opacity: 1;
+  transform: scale(1);
+}
+.zone .tip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 6px;
+  font-size: 12px;
+  color: #fff;
+  background: rgba(30, 18, 6, 0.92);
+  padding: 4px 10px;
+  border-radius: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.15s;
+  pointer-events: none;
+}
+.zone:hover .tip {
+  opacity: 1;
+}
+/* 디버그(클릭영역 보기): 따뜻한 갈색 방에서도 또렷한 시안 + 두꺼운 테두리 */
+#peek:checked ~ .stage .zone {
+  background: rgba(84, 252, 252, 0.28);
+  box-shadow: inset 0 0 0 3px rgba(84, 252, 252, 1),
+    0 0 12px rgba(84, 252, 252, 0.6);
+}
+/* 디버그 중엔 펄스 끄고 박스만 또렷하게 */
+#peek:checked ~ .stage .zone::after {
+  animation: none;
+  opacity: 0;
+}
+
+.z-tv {
+  left: 56.5%;
+  top: 35.2%;
+  width: 18%;
+  height: 13%;
+}
+.z-audio {
+  left: 36%;
+  top: 36%;
+  width: 18.5%;
+  height: 10.5%;
+}
+.z-phone {
+  left: 76.5%;
+  top: 48.5%;
+  width: 8.5%;
+  height: 5.5%;
+}
+.z-books {
+  left: 39%;
+  top: 20%;
+  width: 14.5%;
+  height: 11%;
+}
+
+/* ===== 로그인 게이트(body.locked): 전화 받기 전 ===== */
+/* 전화기 외 사물 잠금 — 클릭 무력화 + 흐릿 */
+body.locked .z-tv,
+body.locked .z-audio,
+body.locked .z-books {
+  pointer-events: none;
+}
+/* 잠금 중엔 방을 못 보므로 안내 펄스도 끔(로그인 후 다시 켜짐) */
+body.locked .zone::after {
+  animation: none;
+  opacity: 0;
+}
+/* 전화 안 받고 패널을 빠져나가지 못하게 "← 방으로" 숨김 */
+body.locked .phone-panel .back {
+  display: none;
+}
+/* 전화벨: 전화기 클릭영역이 울리듯 깜빡·흔들 + 힌트 항상 노출 */
+body.locked .z-phone {
+  animation: ring-shake 0.55s ease-in-out infinite;
+  background: rgba(255, 210, 120, 0.12);
+  box-shadow: inset 0 0 0 2px rgba(255, 210, 120, 0.9),
+    0 0 18px 3px rgba(255, 210, 120, 0.45);
+}
+body.locked .z-phone .tip {
+  opacity: 1;
+}
+@keyframes ring-shake {
+  0%, 100% { transform: translate(0, 0) rotate(0); }
+  25% { transform: translate(-2px, 1px) rotate(-1.5deg); }
+  75% { transform: translate(2px, -1px) rotate(1.5deg); }
+}
+
+/* ===== 클릭 = 풀 줌인 ===== */
+#v-tv:checked ~ .stage .roomview {
+  transform: scale(2.6);
+  transform-origin: 65.5% 41.7%;
+}
+#v-audio:checked ~ .stage .roomview {
+  transform: scale(2.6);
+  transform-origin: 45.3% 41.3%;
+}
+#v-phone:checked ~ .stage .roomview {
+  transform: scale(3.2);
+  transform-origin: 80.8% 51.3%;
+}
+#v-books:checked ~ .stage .roomview {
+  transform: scale(3);
+  transform-origin: 46.3% 25.5%;
+}
+/* 줌인 상태에서 클릭영역 끄기 */
+#v-tv:checked ~ .stage .zone,
+#v-audio:checked ~ .stage .zone,
+#v-phone:checked ~ .stage .zone,
+#v-books:checked ~ .stage .zone {
+  pointer-events: none;
+}
+
+/* ===== 기능 패널 (줌 끝난 뒤 떠오름) ===== */
+.panel {
+  position: absolute;
+  inset: 0;
+  z-index: 40;
+  display: none;
+  flex-direction: column;
+  padding: 22px;
+  background: radial-gradient(
+    120% 100% at 50% 30%,
+    rgba(20, 14, 8, 0.92),
+    rgba(8, 5, 2, 0.95)
+  );
+}
+.panel .back {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  cursor: pointer;
+  font-size: 12px;
+  color: var(--cream);
+  background: rgba(255, 255, 255, 0.08);
+  padding: 7px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  z-index: 2;
+}
+.panel .back:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+.panel .device {
+  margin: auto;
+  width: min(420px, 92%);
+}
+.panel h2 {
+  color: var(--amber);
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 14px;
+  letter-spacing: 1px;
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.glass {
+  border-radius: 14px / 20px;
+  background: #0b0f14;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 0 0 3px #111, inset 0 0 50px rgba(0, 0, 0, 0.85);
+}
+.glass::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.16) 0 1px,
+      transparent 1px 3px
+    ),
+    linear-gradient(125deg, rgba(255, 255, 255, 0.12), transparent 38%);
+}
+
+/* TV */
+.tv-panel .bars {
+  display: flex;
+  height: 18px;
+}
+.tv-panel .bars > div {
+  flex: 1;
+}
+.tv-panel .b1 { background: #e6e6e6; }
+.tv-panel .b2 { background: #e6e600; }
+.tv-panel .b3 { background: #00e6e6; }
+.tv-panel .b4 { background: #00b400; }
+.tv-panel .b5 { background: #e600e6; }
+.tv-panel .b6 { background: #c80000; }
+.tv-panel .b7 { background: #1414b4; }
+.tv-panel .scr {
+  padding: 20px;
+  color: var(--cream);
+  text-align: center;
+}
+.tv-panel .e {
+  font-size: 54px;
+}
+.tv-panel .deg {
+  font-family: "GalmuriMono11", monospace;
+  font-size: 38px;
+  color: #cfe9ff;
+  margin: 6px 0;
+}
+.tv-panel .loc {
+  color: #7fd0ff;
+  font-size: 14px;
+}
+.tv-panel .talk {
+  font-size: 13px;
+  margin-top: 12px;
+  color: var(--cream);
+  line-height: 1.6;
+}
+
+/* 전축 */
+.audio-panel .deck {
+  background: linear-gradient(#3a2a1a, #241710);
+  border-radius: 14px;
+  padding: 18px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+.audio-panel .lp {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  flex: none;
+  position: relative;
+  background: repeating-radial-gradient(
+    circle at 50% 50%,
+    #1a1a1a 0 2px,
+    #111 2px 4px
+  );
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
+  animation: spin 4s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.audio-panel .lp::after {
+  content: "";
+  position: absolute;
+  inset: 38%;
+  border-radius: 50%;
+  background: radial-gradient(#e8a13a, #c8473f);
+  box-shadow: 0 0 0 4px #1a1a1a;
+}
+.audio-panel .meta {
+  flex: 1;
+  color: var(--cream);
+}
+.audio-panel .now {
+  color: var(--amber);
+  font-size: 11px;
+}
+.audio-panel .title {
+  font-size: 16px;
+  margin: 4px 0 8px;
+}
+.audio-panel .bgnote {
+  font-size: 11px;
+  color: #cbb896;
+  line-height: 1.7;
+}
+.audio-panel .eqbar {
+  display: flex;
+  gap: 4px;
+  align-items: flex-end;
+  height: 34px;
+  margin-top: 10px;
+}
+.audio-panel .eqbar i {
+  width: 6px;
+  background: linear-gradient(#2ecc71, #ffb000);
+  border-radius: 1px;
+  animation: eq 0.9s ease-in-out infinite alternate;
+}
+.audio-panel .eqbar i:nth-child(odd) {
+  animation-duration: 0.7s;
+}
+@keyframes eq {
+  from {
+    transform: scaleY(0.4);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+.audio-panel .shuffle {
+  margin-top: 14px;
+  font-family: inherit;
+  font-size: 12px;
+  color: var(--cream);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.audio-panel .shuffle:hover {
+  background: rgba(255, 176, 0, 0.3);
+}
+
+/* 전화기 — 로그인 */
+.phone-panel .dialog {
+  background: #1a130c;
+  border: 2px solid #3a2a18;
+  border-radius: 14px;
+  padding: 26px;
+  text-align: center;
+  color: var(--cream);
+}
+.phone-panel .ring {
+  font-size: 40px;
+}
+.phone-panel .say {
+  font-size: 13px;
+  margin: 10px 0 14px;
+  color: #cbb896;
+}
+.phone-panel .input {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #0b0f14;
+  border: 2px solid #3a2a18;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 15px;
+  color: var(--cyan);
+}
+.phone-panel .input input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--cyan);
+  font-family: inherit;
+  font-size: 15px;
+  width: 120px;
+}
+.phone-panel .cur {
+  display: inline-block;
+  width: 8px;
+  height: 15px;
+  background: var(--cyan);
+  animation: bl 1s steps(1) infinite;
+}
+@keyframes bl {
+  50% {
+    opacity: 0;
+  }
+}
+.phone-panel .greeting {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--cream);
+}
+.phone-panel .greeting b {
+  color: var(--amber);
+}
+.phone-panel .greeting .logout {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 11px;
+  color: #cbb896;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+/* 책장 달력 — 투두 */
+.books-panel .shelf {
+  background: linear-gradient(#3a2a1a, #241710);
+  border-radius: 14px;
+  padding: 20px;
+  color: var(--cream);
+}
+.books-panel h3 {
+  color: var(--amber);
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+.books-panel ul {
+  list-style: none;
+  font-size: 14px;
+  line-height: 2;
+}
+.books-panel ul li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  animation: rise 0.2s ease;
+}
+.books-panel ul li span {
+  flex: 1;
+  word-break: break-all;
+}
+.books-panel ul li button {
+  flex: none;
+  font-family: inherit;
+  font-size: 12px;
+  color: #cbb896;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.15s, color 0.15s;
+}
+.books-panel ul li button:hover {
+  opacity: 1;
+  color: var(--red);
+}
+.books-panel .empty {
+  color: #8a7a5a;
+  font-size: 12px;
+}
+.books-panel .add {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--cyan);
+  font-size: 13px;
+  margin-top: 10px;
+}
+.books-panel .add input {
+  flex: 1;
+  background: #0b0f14;
+  border: 2px solid #3a2a18;
+  border-radius: 6px;
+  padding: 7px 10px;
+  color: var(--cyan);
+  font-family: inherit;
+  font-size: 13px;
+  outline: none;
+}
+
+#v-tv:checked ~ .stage .tv-panel,
+#v-audio:checked ~ .stage .audio-panel,
+#v-phone:checked ~ .stage .phone-panel,
+#v-books:checked ~ .stage .books-panel {
+  display: flex;
+  animation: rise 0.35s 0.45s both;
+}
+
+.caption {
+  position: fixed;
+  bottom: 7px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 10px;
+  color: #8a7a5a;
+  letter-spacing: 1px;
+}

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>할머니 댁 안방 · Momentum</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/galmuri/dist/galmuri.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- 전축이 거는 "오늘의 한 장" 분위기 배경 (블러·따뜻한 톤으로 방 뒤에 은은히) -->
+    <div class="bg" id="bg"></div>
+
+    <!-- 줌 상태를 CSS만으로 전환하기 위한 라디오 (방/사물4개) + 클릭영역 디버그 -->
+    <input class="switch" type="radio" name="view" id="v-room" checked />
+    <input class="switch" type="radio" name="view" id="v-tv" />
+    <input class="switch" type="radio" name="view" id="v-audio" />
+    <input class="switch" type="radio" name="view" id="v-phone" />
+    <input class="switch" type="radio" name="view" id="v-books" />
+    <input class="switch" type="checkbox" id="peek" />
+
+    <label class="peek" for="peek">⬚ 클릭영역 보기</label>
+
+    <div class="stage">
+      <div class="roomview"></div>
+
+      <!-- ① 항상 켜진 벽 LED 시계 (room.png의 빨간 12:00 자리에 덮음) -->
+      <div class="wallclock">
+        <span class="clock">
+          <span id="clock-h">00</span><span class="colon">:</span><span id="clock-m">00</span>
+        </span>
+      </div>
+
+      <!-- 클릭 영역 (넉넉하게) -->
+      <label class="zone z-tv" for="v-tv"><span class="tip">📺 TV — 오늘 날씨</span></label>
+      <label class="zone z-audio" for="v-audio"><span class="tip">📻 전축 — 음악·바탕화면</span></label>
+      <label class="zone z-phone" for="v-phone"><span class="tip">☎ 전화기 — 로그인</span></label>
+      <label class="zone z-books" for="v-books"><span class="tip">📅 달력 — 오늘 할 일</span></label>
+
+      <!-- ② TV : 날씨 + 위치 -->
+      <div class="panel tv-panel">
+        <label class="back" for="v-room">← 방으로</label>
+        <div class="device">
+          <h2>금성 컬러 TV — 일기예보</h2>
+          <div class="glass">
+            <div class="bars">
+              <div class="b1"></div><div class="b2"></div><div class="b3"></div>
+              <div class="b4"></div><div class="b5"></div><div class="b6"></div><div class="b7"></div>
+            </div>
+            <div class="scr">
+              <div class="e" id="weather-icon">📡</div>
+              <div class="deg galmono" id="weather-temp">수신 중…</div>
+              <div class="loc" id="weather-loc">위치 확인 중</div>
+              <div class="talk" id="weather-talk">채널 잘 맞춰봐라~</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ③ 전축 : 랜덤 배경(오늘의 한 장) -->
+      <div class="panel audio-panel">
+        <label class="back" for="v-room">← 방으로</label>
+        <div class="device">
+          <h2>전축 · LP — 오늘의 한 장</h2>
+          <div class="deck">
+            <div class="lp"></div>
+            <div class="meta">
+              <div class="now">▶ NOW PLAYING</div>
+              <div class="title" id="lp-title">오늘의 한 장</div>
+              <div class="bgnote">새로고침할 때마다 LP가 바뀌고<br />바탕화면도 그 분위기로 갈려요</div>
+              <div class="eqbar">
+                <i style="height:60%"></i><i style="height:90%"></i><i style="height:40%"></i>
+                <i style="height:100%"></i><i style="height:55%"></i><i style="height:75%"></i>
+                <i style="height:30%"></i><i style="height:85%"></i>
+              </div>
+              <button class="shuffle" id="bg-shuffle" type="button">⟳ 다른 판 걸기</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ④ 전화기 : 로그인 -->
+      <div class="panel phone-panel">
+        <label class="back" for="v-room">← 방으로</label>
+        <div class="device">
+          <h2>금성 다이얼 전화기</h2>
+          <div class="dialog">
+            <div class="ring">☎</div>
+            <!-- 로그인 전 -->
+            <form id="login-form" class="login-form">
+              <div class="say">"누고? 이름 좀 대보이소"</div>
+              <label class="input">&gt;
+                <input id="login-input" type="text" maxlength="15" required autocomplete="off" placeholder="이름" />
+                <span class="cur"></span>
+              </label>
+            </form>
+            <!-- 로그인 후 -->
+            <div id="greeting" class="greeting hidden"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ⑤ 벽 달력 : 투두리스트 -->
+      <div class="panel books-panel">
+        <label class="back" for="v-room">← 방으로</label>
+        <div class="device">
+          <h2>벽 달력 — 오늘 할 일</h2>
+          <div class="shelf">
+            <h3>▣ 오늘 할 일</h3>
+            <ul id="todo-list"></ul>
+            <form id="todo-form" class="add">
+              ＋ <input id="todo-input" type="text" placeholder="새 할 일 적고 Enter" required autocomplete="off" />
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="caption">★ 할머니 댁 안방 · 사물을 누르면 줌인 — 시계는 벽에 항상 켜져요 ★</div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
