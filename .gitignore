@@ -31,3 +31,7 @@ _notes/
 *.private.md
 CLAUDE.md
 
+# 개인 글쓰기 워크플로우 (글감/피드백 커맨드 + 글 기준) — 절대 공개 X
+.claude/
+_writing/
+

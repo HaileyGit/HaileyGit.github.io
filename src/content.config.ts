@@ -32,15 +32,4 @@ const work = defineCollection({
   }),
 });
 
-const essays = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/essays' }),
-  schema: z.object({
-    title: z.string(),
-    excerpt: z.string().optional(),
-    date: z.coerce.date(),
-    tags: z.array(z.string()).optional(),
-    draft: z.boolean().default(false),
-  }),
-});
-
-export const collections = { challenges, projects, work, essays };
+export const collections = { challenges, projects, work };

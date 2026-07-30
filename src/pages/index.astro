@@ -1,20 +1,5 @@
 ---
-import { getCollection } from "astro:content";
 import PageLayout from "../layouts/PageLayout.astro";
-import ArrowCard from "../components/ArrowCard.astro";
-import { SITE } from "../consts";
-
-const essays = (await getCollection("essays", ({ data }) => !data.draft))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, SITE.NUM_POSTS_ON_HOMEPAGE);
-
-const challenges = (await getCollection("challenges", ({ data }) => !data.draft))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, SITE.NUM_PROJECTS_ON_HOMEPAGE);
-
-const projects = (await getCollection("projects", ({ data }) => !data.draft))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, SITE.NUM_PROJECTS_ON_HOMEPAGE);
 ---
 
 <PageLayout title="">
@@ -25,100 +10,18 @@ const projects = (await getCollection("projects", ({ data }) => !data.draft))
           <p class="animated text-3xl md:text-5xl font-bold text-black dark:text-white tracking-tight">
             Hailey<span class="text-black/40 dark:text-white/40">.</span>
           </p>
+          <a
+            href="/projects"
+            class="mt-8 inline-flex items-center gap-1 text-sm underline decoration-[.5px] decoration-black/25 dark:decoration-white/50 hover:decoration-black dark:hover:decoration-white text-black/75 dark:text-white/75 hover:text-black dark:hover:text-white underline-offset-2 blend"
+          >
+            프로젝트 보기 →
+          </a>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="relative bg-white dark:bg-black">
-    <div class="mx-auto max-w-screen-sm p-5 space-y-24 pb-16">
-
-      {essays.length > 0 && (
-        <section class="animate">
-          <div class="space-y-4">
-            <div class="flex justify-between">
-              <p class="font-semibold text-black dark:text-white">
-                Recent essays
-              </p>
-              <a
-                href="/essays"
-                class="w-fit group flex gap-1 items-center underline decoration-[.5px] decoration-black/25 dark:decoration-white/50 hover:decoration-black dark:hover:decoration-white text-black dark:text-white underline-offset-2 blend"
-              >
-                <span class="text-black/75 dark:text-white/75 group-hover:text-black group-hover:dark:text-white blend">
-                  All essays
-                </span>
-              </a>
-            </div>
-            <ul class="space-y-4">
-              {essays.map((post) => (
-                <li>
-                  <ArrowCard entry={post} />
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-      )}
-
-      {challenges.length > 0 && (
-        <section class="animate">
-          <div class="space-y-4">
-            <div class="flex justify-between">
-              <p class="font-semibold text-black dark:text-white">
-                Recent challenges
-              </p>
-              <a
-                href="/challenges"
-                class="w-fit group flex gap-1 items-center underline decoration-[.5px] decoration-black/25 dark:decoration-white/50 hover:decoration-black dark:hover:decoration-white text-black dark:text-white underline-offset-2 blend"
-              >
-                <span class="text-black/75 dark:text-white/75 group-hover:text-black group-hover:dark:text-white blend">
-                  All challenges
-                </span>
-              </a>
-            </div>
-            <ul class="space-y-4">
-              {challenges.map((c) => (
-                <li>
-                  <ArrowCard entry={c} />
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-      )}
-
-      {projects.length > 0 && (
-        <section class="animate">
-          <div class="space-y-4">
-            <div class="flex justify-between">
-              <p class="font-semibold text-black dark:text-white">
-                Recent projects
-              </p>
-              <a
-                href="/projects"
-                class="w-fit group flex gap-1 items-center underline decoration-[.5px] decoration-black/25 dark:decoration-white/50 hover:decoration-black dark:hover:decoration-white text-black dark:text-white underline-offset-2 blend"
-              >
-                <span class="text-black/75 dark:text-white/75 group-hover:text-black group-hover:dark:text-white blend">
-                  All projects
-                </span>
-              </a>
-            </div>
-            <ul class="space-y-4">
-              {projects.map((p) => (
-                <li>
-                  <ArrowCard entry={p} />
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-      )}
-
-    </div>
-  </div>
-
   <script is:inline>
-    // Scroll-in reveal: add .show to .animate when in viewport
     function initAnimateOnScroll() {
       const els = document.querySelectorAll(".animate");
       const io = new IntersectionObserver((entries) => {

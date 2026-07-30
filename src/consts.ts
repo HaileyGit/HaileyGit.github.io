@@ -7,8 +7,6 @@ export const SITE = {
 };
 
 export const LINKS = [
-  { TEXT: "Essays", HREF: "/essays" },
-  { TEXT: "Challenges", HREF: "/challenges" },
   { TEXT: "Projects", HREF: "/projects" },
   { TEXT: "Work", HREF: "/work" },
   { TEXT: "About", HREF: "/about" },

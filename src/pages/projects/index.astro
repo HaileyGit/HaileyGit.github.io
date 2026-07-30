@@ -1,33 +1,157 @@
 ---
-import { getCollection } from "astro:content";
 import PageLayout from "../../layouts/PageLayout.astro";
 import Container from "../../components/Container.astro";
-import ArrowCard from "../../components/ArrowCard.astro";
 
-const items = (await getCollection("projects", ({ data }) => !data.draft))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const SC = "/showcase/기초클럽";
+const hwpShots = ["index", "friends", "chats", "chat", "find", "more", "settings"].map(
+  (s) => `/showcase/details/hwp/${s}.png`,
+);
+
+// 코스별 프로젝트. thumb=카드 썸네일, shots=상세뷰에서 넘겨볼 캡처들
+type Item = { title: string; tag: string; thumb: string; shots?: string[] };
+const courses: { name: string; sub: string; items: Item[] }[] = [
+  {
+    name: "AI 기초 클럽",
+    sub: "노마드코더 · 웹 기초 챌린지",
+    items: [
+      { title: "Momentum 클론", tag: "Vanilla JS", thumb: `${SC}/01_momentum.png` },
+      { title: "포커스 타이머", tag: "JS", thumb: `${SC}/02_focus_timer.png` },
+      { title: "영화 탐색기", tag: "API", thumb: `${SC}/03_movie_explorer.png` },
+      { title: "포켓몬 갤러리", tag: "API", thumb: `${SC}/04_pokemon_gallery.png` },
+      { title: "Marvel API 앱", tag: "API", thumb: `${SC}/05_marvel.png` },
+      { title: "한글(HWP) 클론", tag: "CSS · 화면 7개", thumb: `${SC}/07_hwp_clone.png`, shots: hwpShots },
+      { title: "뮤직 플레이어", tag: "JS", thumb: `${SC}/08_music_player.png` },
+      { title: "플레이리스트", tag: "JS", thumb: `${SC}/09_playlist.png` },
+      { title: "라이브러리", tag: "JS", thumb: `${SC}/10_library.png` },
+      { title: "ATDT 레트로 챗", tag: "사이드 프로젝트 대회 출품", thumb: `${SC}/atdt-chat.png` },
+    ],
+  },
+  {
+    name: "마스터클래스",
+    sub: "AI 엔지니어 클럽 · 졸업과제",
+    items: [
+      { title: "셀프케어 코치", tag: "LangGraph · 졸업과제", thumb: "/showcase/마스터클래스/coach_graph.png" },
+    ],
+  },
+];
+
 ---
 
 <PageLayout title="Projects">
   <section class="pt-32 pb-16">
-    <Container size="md">
-      <div class="space-y-10">
-        <h1 class="page-heading text-3xl">Projects</h1>
-
-        {items.length === 0 ? (
-          <p class="text-sm text-black/50 dark:text-white/50">
-            아직 등록된 프로젝트가 없습니다.
+    <Container size="lg">
+      <div class="space-y-16">
+        <div>
+          <h1 class="page-heading text-3xl">Projects</h1>
+          <p class="mt-2 text-sm text-black/50 dark:text-white/50">
+            노마드코더 · AI 부트캠프에서 만든 결과물 · 카드를 누르면 크게 볼 수 있어요
           </p>
-        ) : (
-          <ul class="space-y-4">
-            {items.map((item) => (
-              <li>
-                <ArrowCard entry={item} />
-              </li>
-            ))}
-          </ul>
-        )}
+        </div>
+
+        {courses.map((course) => (
+          <div class="space-y-6">
+            <div class="border-b border-black/10 dark:border-white/15 pb-3">
+              <h2 class="text-2xl font-semibold">{course.name}</h2>
+              <p class="text-sm text-black/50 dark:text-white/50 mt-1">{course.sub}</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {course.items.map((item) => {
+                const shots = item.shots ?? [item.thumb];
+                return (
+                <figure
+                  class="js-card group rounded-xl overflow-hidden border border-black/10 dark:border-white/15 bg-black/[0.02] dark:bg-white/[0.03] transition hover:-translate-y-1 hover:shadow-lg cursor-zoom-in"
+                  data-shots={JSON.stringify(shots)}
+                  data-title={item.title}
+                >
+                  <div class="relative aspect-video overflow-hidden bg-black/5 dark:bg-white/5 flex items-center justify-center">
+                    <img
+                      src={item.thumb}
+                      alt={item.title}
+                      loading="lazy"
+                      class="max-w-full max-h-full object-contain transition duration-300 group-hover:scale-[1.02]"
+                    />
+                    {shots.length > 1 && (
+                      <span class="absolute top-2 right-2 text-[11px] font-medium px-2 py-0.5 rounded-full bg-black/60 text-white">
+                        🖼 {shots.length}
+                      </span>
+                    )}
+                  </div>
+                  <figcaption class="px-4 py-3">
+                    <div class="font-medium text-sm">{item.title}</div>
+                    <div class="text-xs text-black/45 dark:text-white/45 mt-0.5">{item.tag}</div>
+                  </figcaption>
+                </figure>
+                );
+              })}
+            </div>
+          </div>
+        ))}
       </div>
     </Container>
   </section>
+
+  {/* ── 상세뷰 라이트박스 (여러 캡처 넘겨보기) ── */}
+  <div id="lightbox" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/85 p-4 sm:p-8">
+    <button id="lb-close" aria-label="닫기" class="absolute top-4 right-5 text-white/80 hover:text-white text-3xl leading-none">×</button>
+    <button id="lb-prev" aria-label="이전" class="absolute left-3 sm:left-6 text-white/70 hover:text-white text-4xl leading-none select-none">‹</button>
+    <button id="lb-next" aria-label="다음" class="absolute right-3 sm:right-6 text-white/70 hover:text-white text-4xl leading-none select-none">›</button>
+    <figure class="max-w-5xl w-full flex flex-col items-center gap-3">
+      <img id="lb-img" src="" alt="" class="max-h-[80vh] max-w-full object-contain rounded-lg shadow-2xl" />
+      <figcaption class="text-white/85 text-sm flex items-center gap-3">
+        <span id="lb-cap"></span>
+        <span id="lb-count" class="text-white/50"></span>
+      </figcaption>
+    </figure>
+  </div>
+
+  <script is:inline>
+    function initLightbox() {
+      const box = document.getElementById("lightbox");
+      if (!box) return;
+      const img = document.getElementById("lb-img");
+      const cap = document.getElementById("lb-cap");
+      const count = document.getElementById("lb-count");
+      const prev = document.getElementById("lb-prev");
+      const next = document.getElementById("lb-next");
+      let shots = [], idx = 0, title = "";
+
+      const render = () => {
+        img.src = shots[idx]; img.alt = title;
+        cap.textContent = title;
+        const multi = shots.length > 1;
+        count.textContent = multi ? `${idx + 1} / ${shots.length}` : "";
+        prev.style.display = multi ? "" : "none";
+        next.style.display = multi ? "" : "none";
+      };
+      const open = (s, t) => {
+        shots = s; title = t; idx = 0; render();
+        box.classList.remove("hidden"); box.classList.add("flex");
+        document.body.style.overflow = "hidden";
+      };
+      const close = () => {
+        box.classList.add("hidden"); box.classList.remove("flex");
+        img.src = ""; document.body.style.overflow = "";
+      };
+      const move = (d) => { idx = (idx + d + shots.length) % shots.length; render(); };
+
+      document.querySelectorAll(".js-card").forEach((c) => {
+        c.addEventListener("click", () => {
+          try { open(JSON.parse(c.dataset.shots), c.dataset.title); } catch (e) {}
+        });
+      });
+      prev.addEventListener("click", (e) => { e.stopPropagation(); move(-1); });
+      next.addEventListener("click", (e) => { e.stopPropagation(); move(1); });
+      document.getElementById("lb-close").addEventListener("click", close);
+      box.addEventListener("click", (e) => { if (e.target === box) close(); });
+      document.addEventListener("keydown", (e) => {
+        if (box.classList.contains("hidden")) return;
+        if (e.key === "Escape") close();
+        if (e.key === "ArrowLeft") move(-1);
+        if (e.key === "ArrowRight") move(1);
+      });
+    }
+    document.addEventListener("astro:after-swap", initLightbox);
+    initLightbox();
+  </script>
 </PageLayout>
